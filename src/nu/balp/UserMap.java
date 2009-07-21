@@ -53,6 +53,7 @@ public class UserMap {
 				System.out.println("url:" + stringUrl);
 				final URL url = new URL(stringUrl);
 				final URLConnection connection = url.openConnection();
+				connection.setRequestProperty("x-name", names.get(hashKey));
 				connection.setDoOutput(true);
 				if (connection instanceof HttpURLConnection) {
 				    ((HttpURLConnection)connection).setRequestMethod("POST");
