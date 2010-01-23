@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="/home/balp/workspace/HTTPChatServer/bin/httpchatserver.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/HTTPChatServer/httpchatserver.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/HTTPChatServer/httpchatserver.manifest" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=HTTPChatServer/src&lt;nu.balp"/>
+        <file path="/HTTPChatServer/.classpath"/>
+        <file path="/HTTPChatServer/.project"/>
+    </selectedElements>
+</jardesc>
