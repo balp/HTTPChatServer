@@ -24,14 +24,13 @@ public class ChatServer {
 			server.start();		
 		}
 	}
-	private static UserMap userMap;
+
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		String port = System.getProperty("port", "9876");
-		userMap = new UserMap();
 		int serverPort = Integer.parseInt(port);
 		
 		(new ChatServer()).start(serverPort);
@@ -43,7 +42,7 @@ public class ChatServer {
 	 */
 	private void start(int serverPort) {
 		try {
-
+			final UserMap userMap = new UserMap();
 			
 			HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
 			server.createContext("/register", new RegisterHandler(userMap));
