@@ -13,25 +13,48 @@ import com.sun.net.httpserver.HttpServer;
  *
  */
 public class ChatServer {
+	public class HttpServerThread extends Thread {
+		private HttpServer server;
 
+		public HttpServerThread(HttpServer server) {
+			this.server = server;
+		}
+
+		public void run() {
+			server.start();		
+		}
+	}
 	private static UserMap userMap;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		String port = System.getProperty("port", "9876");
+		userMap = new UserMap();
+		int serverPort = Integer.parseInt(port);
+		
+		(new ChatServer()).start(serverPort);
+	}
+
+	/**
+	 * @param serverPort 
+	 * 
+	 */
+	private void start(int serverPort) {
 		try {
-			userMap = new UserMap();
-			HttpServer server = HttpServer.create(new InetSocketAddress(9876), 0);
+
+			
+			HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
 			server.createContext("/register", new RegisterHandler(userMap));
 			server.createContext("/send", new ChatHandler(userMap));
 			server.setExecutor(null); // creates a default executor
-			server.start();
+			HttpServerThread thread = new HttpServerThread(server);
+			thread.start();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-
 	}
 
 }
