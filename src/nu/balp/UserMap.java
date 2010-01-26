@@ -92,4 +92,9 @@ public class UserMap {
 
 	}
 
+	public Iterator<String> keyIterator() {
+		// TODO Auto-generated method stub
+		return names.keySet().iterator();
+	}
+
 }

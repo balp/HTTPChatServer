@@ -47,6 +47,7 @@ public class ChatServer {
 			HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
 			server.createContext("/register", new RegisterHandler(userMap));
 			server.createContext("/send", new ChatHandler(userMap));
+			server.createContext("/", new InfoHandler(userMap));
 			server.setExecutor(null); // creates a default executor
 			HttpServerThread thread = new HttpServerThread(server);
 			thread.start();
