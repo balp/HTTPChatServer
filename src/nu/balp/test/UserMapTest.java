@@ -38,7 +38,8 @@ public class UserMapTest extends TestCase {
 		Iterator<String> it = db.keyIterator();
 		while(it.hasNext()) {
 			String key = it.next();
-			Object val = db.getName(key);
+			String name = db.getName(key);
+			String url = db.getUrl(key);
 		} 
 		
 	}
