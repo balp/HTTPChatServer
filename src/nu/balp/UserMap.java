@@ -1,6 +1,7 @@
 package nu.balp;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -31,7 +32,10 @@ public class UserMap {
 		names.put(key, name);
 
 	}
-
+	public void delKey(String key) {
+		urls.remove(key);
+		names.remove(key);
+	}
 	public String getUrl(String key) {
 		return urls.get(key);
 	}
@@ -70,6 +74,7 @@ public class UserMap {
 				out.flush();
 				out.close();
 				Debug.getLogger().println("Sent: \""+ fullMessage + "\"");
+				try {
 				BufferedReader in = new BufferedReader(
 					new InputStreamReader(
 					    connection.getInputStream()));
@@ -80,6 +85,9 @@ public class UserMap {
 					Debug.getLogger().println(decodedString);
 				}
 				in.close();
+				} catch (FileNotFoundException e ) {
+					delKey(key);
+				}
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -96,5 +104,7 @@ public class UserMap {
 		// TODO Auto-generated method stub
 		return names.keySet().iterator();
 	}
+
+
 
 }

@@ -43,7 +43,7 @@ public class ChatServer {
 	private void start(int serverPort) {
 		try {
 			final UserMap userMap = new UserMap();
-			
+			System.out.println("Starting server on " + Integer.toString(serverPort));
 			HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
 			server.createContext("/register", new RegisterHandler(userMap));
 			server.createContext("/send", new ChatHandler(userMap));

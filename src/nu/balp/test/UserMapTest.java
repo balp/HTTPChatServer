@@ -41,6 +41,12 @@ public class UserMapTest extends TestCase {
 			String name = db.getName(key);
 			String url = db.getUrl(key);
 		} 
+	}
+	public void testRemoveName() {
+		assertEquals(clientUrl1, db.getUrl(key1));
+		db.delKey(key1);
+		assertEquals(null, db.getUrl(key1));
+		
 		
 	}
 	

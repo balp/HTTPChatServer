@@ -17,8 +17,8 @@ public class InfoHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange arg0) throws IOException {
-		// TODO Auto-generated method stub
-		OutputStream os = arg0.getResponseBody();
+		Debug.getLogger().println("Http Request" + arg0.toString());
+		
 		String response = "<html><head><title>HTTPChatServer</title></head><body><h1>HTTPChatServer</h1>";
 		Iterator<String> it = userMap.keyIterator();
 		response += "<dl>";
@@ -29,7 +29,10 @@ public class InfoHandler implements HttpHandler {
 		}
 		response += "</dl>";
 		response += "</body></html>";
-		
+		Debug.getLogger().println("Http reply: " + response);
+		arg0.getResponseHeaders().set("Cache-Control", "no-cache");
+		arg0.sendResponseHeaders(200, response.length());
+		OutputStream os = arg0.getResponseBody();
 		os.write(response.getBytes());
 		os.close();
 	}
